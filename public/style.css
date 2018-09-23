@@ -1,18 +1,35 @@
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family:sans-serif;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
   margin: 25px;
   color: #222;
   background-color: #f5f5f5;
 }
 
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.info-wrap  {
+  text-align: center;
+}
+
 h1 {
-  font-weight: bold;
-  
+  text-align: center;
+  font-weight: 700;
 }
 
 .bold {
@@ -31,6 +48,10 @@ form {
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
+}
+
+form:first-child {
+  margin-right: 20px;
 }
 
 input {
@@ -57,8 +78,8 @@ input[type=submit]:hover {
 }
 
 code {
-  font-family: monospace;
+  font-family: Inconsolata, monospace;
   font-size: 1.2em;
   background-color: #FFFEC4;
-  padding: 2px;
+  padding: 2px 6px;
 }
