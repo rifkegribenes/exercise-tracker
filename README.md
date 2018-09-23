@@ -2,7 +2,7 @@
 
 ### [http://rg-exercise-tracker.herokuapp.com/](http://rg-exercise-tracker.herokuapp.com/)
 
-![exercise-tracker screenshot](https://github.com/rifkegribenes/exercise-tracker/blob/master/screenshot.png?raw=true)
+![exercise-tracker screenshot](https://github.com/rifkegribenes/exercise-tracker/blob/master/public/screenshot.png?raw=true)
 
 ### User Stories
 
