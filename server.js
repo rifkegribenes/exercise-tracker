@@ -18,6 +18,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// routes ======================================================================
+const router = require('./router');
+router(app);
 
 app.use(express.static('public'));
 app.get('/', (req, res) => {
@@ -49,6 +52,7 @@ app.use((err, req, res, next) => {
     .send(errMessage);
 });
 
-const listener = app.listen(process.env.PORT || 3001, () => {
-  console.log(`Node is listening on port ${listener.address().port}`);
-});
+
+// launch ======================================================================
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Node.js listening on port ${port}...`));
