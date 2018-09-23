@@ -6,6 +6,7 @@
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
       <link href="https://fonts.googleapis.com/css?family=Roboto:300,700|Inconsolata" rel="stylesheet" type="text/css">
       <link href="style.css" rel="stylesheet" type="text/css">
+      <script type="text/javascript" src="script.js"></script>
    </head>
 
    <body>
@@ -15,24 +16,38 @@
             <form action="/api/exercise/new-user" method="post">
               <h3>Create a New User</h3>
               <p><code>POST /api/exercise/new-user</code></p>
-              <input id="username" type="text" name="username" placeholder="username">
-              <input type="submit" value="Submit">
+              <label for="username">Username</label>
+              <input id="username" type="text" name="username" placeholder="Username">
+              <button type="submit" value="Submit">Submit</button>
             </form>
             <form action="/api/exercise/add" method="post">
               <h3>Add exercises</h3>
               <p><code>POST /api/exercise/add</code></p>
-              <input id="userId" type="text" name="userId" placeholder="userId*">
-              <input id="description" type="text" name="description" placeholder="description*">
-              <input id="duration" type="text" name="duration" placeholder="duration* (mins.)">
-              <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)">
-              <input type="submit" value="Submit">
+              <label for="userId">User Id*</label>
+              <input id="userId" type="text" name="userId" placeholder="User Id">
+              <label for="description">Description*</label>
+              <input id="description" type="text" name="description" placeholder="Description">
+              <label for="duration">Duration (in minutes)*</label>
+              <input id="duration" type="number" name="duration">
+              <label for="date">Date</label>
+              <input id="date" type="date" name="date">
+              <button type="submit" value="Submit">Submit</button>
+            </form>
+            <form >
+              <h3>Generate URL to get user's exercise log</h3>
+              <p><code>GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
+              <label for="userIdLog">User Id*</label>
+              <input id="userIdLog" type="text" name="userIdLog" placeholder="User Id">
+              <label for="from">From (optional)</label>
+              <input id="from" type="date" name="from">
+              <label for="to">To (optional)</label>
+              <input id="to" type="date" name="to">
+              <label for="limit">Limit (optional)</label>
+              <input id="limit" type="number" name="limit" placeholder="limit">
+              <button type="button" onClick="displayResult()">Generate URL</button>
             </form>
           </div>
-          <div class="info-wrap">
-            <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
-            <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
-            <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
-          </div>
+          <div class="info-wrap" id="result" ></div>
       </div>
    </body>
 

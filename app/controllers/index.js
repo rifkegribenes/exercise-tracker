@@ -37,18 +37,16 @@ exports.getUsers = (req, res, next) => {
 };
 
 // Get all exercises for one user.
-// params = userId (required)
+// query params = userId (required)
 //  to (date, optional)
 //  from (date, optional)
 //  limit (integer, optional)
 exports.getUserLog = (req, res, next) => {
   console.log(`Controller > getUserLog: ${req.query.userId}`);
   const { userId, from, to, limit } = req.query;
-  console.log(userId, from, to, limit);
-  const dateFrom = !from ? new Date(0) : new Date(from);
+  const dateFrom = from ? new Date(from) : new Date(0);
   const dateTo = to ? new Date(to) : new Date();
   const recordLimit = limit ? parseInt(limit) : 100;
-  console.log(userId, dateFrom, dateTo, recordLimit);
 
   Exercise.find({
     userId: userId,
