@@ -7,7 +7,27 @@ body {
   font-weight: 300;
   margin: 25px;
   color: #222;
-  background-color: #f5f5f5;
+  background: #11998e;
+  background: -webkit-linear-gradient(to bottom left, #38ef7d, #11998e);
+  background: linear-gradient(to bottom left, #38ef7d, #11998e);
+  min-height: 100vh;
+
+}
+
+.button {
+  background: #11998e;
+  color: white;
+  width: 100%;
+  border-radius: 6px;
+  height: 40px;
+  font-size: 1em;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.button:hover {
+  background: #3CD084;
+  transition: all 300ms ease-in-out;
 }
 
 .container {
@@ -31,7 +51,14 @@ body {
 
 h1 {
   text-align: center;
-  font-weight: 700;
+  font-weight: 300;
+  color: white;
+  font-size: 3em;
+}
+
+h3 {
+  text-align: center;
+  color: ;
 }
 
 .bold {
@@ -45,39 +72,47 @@ p {
 form {
   margin-bottom: 25px;
   padding: 15px;
-  background-color: #87D37C;
+  background-color: white;
   display: inline-block;
   width: 100%;
   max-width: 340px;
-  border-radius: 5px;
+  border-radius: 6px;
   margin-right: 20px;
+}
+
+.result {
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
 }
 
 form:last-child {
   margin-right: 0;
 }
 
+.icon-wrap {
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+}
+
+.icon {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 input {
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
+  font-family: Roboto, sans-serif;
+  padding: 5px 8px;
   width: 100%;
   border: 1px solid lightgrey;
   border-radius: 3px;
-  font-size: 16px;
-}
-
-input[type=submit] {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: #E4F1FE;
-  border: 1px solid grey;
-  box-shadow: 2px 2px #999;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #FFFEC4;
+  font-size: 1.2em;
+  margin-bottom: 20px;
 }
 
 code {

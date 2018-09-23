@@ -11,6 +11,9 @@
 
    <body>
       <div class="container">
+        <a class="icon-wrap" href='https://github.com/rifkegribenes/exercise-tracker' target="blank">
+          <img src="github-white.svg" class="icon" alt="github" title="view code on github" />
+        </a>
          <h1>Exercise tracker</h1>
          <div class="form-wrap">
             <form action="/api/exercise/new-user" method="post">
@@ -18,7 +21,7 @@
               <p><code>POST /api/exercise/new-user</code></p>
               <label for="username">Username</label>
               <input id="username" type="text" name="username" placeholder="Username">
-              <button type="submit" value="Submit">Submit</button>
+              <button class="button" type="submit" value="Submit">Submit</button>
             </form>
             <form action="/api/exercise/add" method="post">
               <h3>Add exercises</h3>
@@ -31,7 +34,7 @@
               <input id="duration" type="number" name="duration">
               <label for="date">Date</label>
               <input id="date" type="date" name="date">
-              <button type="submit" value="Submit">Submit</button>
+              <button class="button" type="submit" value="Submit">Submit</button>
             </form>
             <form >
               <h3>Generate URL to get user's exercise log</h3>
@@ -44,7 +47,7 @@
               <input id="to" type="date" name="to">
               <label for="limit">Limit (optional)</label>
               <input id="limit" type="number" name="limit" placeholder="limit">
-              <button type="button" onClick="displayResult()">Generate URL</button>
+              <button class="button" type="button" onClick="displayResult()">Generate URL</button>
             </form>
           </div>
           <div class="info-wrap" id="result" ></div>
