@@ -1,7 +1,6 @@
 const APP_HOST = process.env.APP_HOST;
-
+const express = require('express');
 const Controller = require('./app/controllers');
-const helpers = require('./app/utils/index');
 
 /* =========================== ROUTE MIDDLEWARE ============================ */
 
@@ -32,11 +31,11 @@ module.exports = (app) => {
 
   // Get exercise log for user
   // Returns fail status + message -or- array of user exercises
-  // Optional params:
+  // Optional query:
   //  from (Date yyyy-mm-dd)
   //  to (Date yyyy-mm-dd)
   //  limit (int)
-  exerciseRoutes.get('/log/:userId/:from?/:to?/:limit?', Controller.userLog);
+  exerciseRoutes.get('/log', Controller.getUserLog);
 
   // Set url for API group routes
   app.use('/api', apiRoutes);

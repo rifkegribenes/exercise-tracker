@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+const middleware = require('./middleware');
+app.use(middleware);
 
-const cors = require('cors');
 const dotenv = require('dotenv').load();
 
 // connect to db
@@ -12,11 +12,6 @@ const mongoose = require('mongoose');
 const configDB = require('./app/config/database.js');
 mongoose.connect(configDB.url, configDB.options);
 mongoose.Promise = global.Promise;
-
-app.use(cors());
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
 
 // routes ======================================================================
 const router = require('./router');

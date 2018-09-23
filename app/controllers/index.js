@@ -15,10 +15,7 @@ exports.newUser = (req, res, next) => {
       .then((user) => {
         console.log('new user saved');
         console.log(user);
-        return res.status(200).json({
-            message: 'User saved successfully',
-            user
-          });
+        return res.status(200).json({ user });
       })
       .catch((err) => {
         console.log(`controller > newUser: ${err}`);
@@ -31,7 +28,7 @@ exports.newUser = (req, res, next) => {
 exports.getUsers = (req, res, next) => {
   User.find()
   	.then((users) => {
-    	return res.status(200).json({users});
+    	return res.status(200).json({ users });
   	})
   	.catch((err) => {
   		console.log(`controller > getUsers: ${err}`);
@@ -45,20 +42,25 @@ exports.getUsers = (req, res, next) => {
 //  from (date, optional)
 //  limit (integer, optional)
 exports.getUserLog = (req, res, next) => {
-  console.log(`book.ctrl.js > getUserLog: ${req.params}`);
-  Exercise.find({ userId: req.params.userId })
+  console.log(`Controller > getUserLog: ${req.query.userId}`);
+  const { userId, from, to, limit } = req.query;
+  console.log(userId, from, to, limit);
+  const dateFrom = !from ? new Date(0) : new Date(from);
+  const dateTo = to ? new Date(to) : new Date();
+  const recordLimit = limit ? parseInt(limit) : 100;
+  console.log(userId, dateFrom, dateTo, recordLimit);
+
+  Exercise.find({
+    userId: userId,
+    date: {
+      $gte: new Date(dateFrom),
+      $lte: new Date(dateTo)
+    }
+  })
+    .limit(recordLimit)
     .then((exercises) => {
-      let data = [ ...exercises ];
-      if (req.params.to) {
-        data = data.filter(exercise => exercise.date <= req.params.to);
-      }
-      if (req.params.from) {
-        data = data.filter(exercise => exercise.date >= req.params.from);
-      }
-      if (req.params.limit) {
-        data = data.slice(0, (limit + 1));
-      }
-      return res.status(200).json({exercises: data});
+      console.log(exercises);
+      return res.status(200).json({ exercises });
     })
     .catch((err) => {
       console.log(`controller > getUserLog: ${err}`);
@@ -70,8 +72,13 @@ exports.newExercise = (req, res, next) => {
   const exercise = req.body;
   console.log(exercise);
 
-    const today = new Date();
-    if (!exercise.date) exercise.date = today;
+  const { date } = exercise;
+
+    if (!date) {
+      exercise.date = new Date();
+    } else {
+      exercise.date = new Date(date);
+    }
     console.log(exercise.date);
 
     const newExercise = new Exercise({
@@ -86,10 +93,21 @@ exports.newExercise = (req, res, next) => {
 	    .then((exercise) => {
 	      console.log('new exercise saved');
 	      console.log(exercise);
-	      return res.status(200).json({
-	          message: 'Exercise saved successfully',
-	          exercise
-	        });
+        User.findById(exercise.userId)
+          .then((user) => {
+            const response = {
+              username: user.username,
+              _id: exercise._id,
+              description: exercise.description,
+              duration: exercise.duration,
+              date: exercise.date
+            }
+            return res.status(200).json({ response });
+          })
+          .catch((err) => {
+            console.log(`controller > newExercise: ${err}`);
+            return handleError(res, err);
+          });
 	    })
 	    .catch((err) => {
 	      console.log(`controller > newExercise: ${err}`);
